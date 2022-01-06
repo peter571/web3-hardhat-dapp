@@ -20,10 +20,12 @@ const Welcome = () => {
             K-Crypt.
           </p>
           {!currentAccount && (
-            <Button className="my-2 wallet-btn" onClick={connectWallet}>Connect Wallet</Button>
+            <Button className="my-2 wallet-btn" onClick={connectWallet}>
+              Connect Wallet
+            </Button>
           )}
-
         </Col>
+
         <Col className="m-auto" xs={12} md={6}>
           <EthCard />
           <br />

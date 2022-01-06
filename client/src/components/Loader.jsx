@@ -8,7 +8,6 @@ const Loader = () => {
         animation="border"
         variant="info"
       />
-      ;
     </div>
   );
 };

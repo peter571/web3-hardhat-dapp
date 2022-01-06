@@ -13,8 +13,6 @@ code {
     monospace;
 }
 
-/*Nabar styles*/
-
 /*Eth-card */
 .eth-card {
   background-color:#a099ff;
@@ -31,23 +29,20 @@ code {
 /*Form Styles*/
 .bg-form {
   background-color: rgb(16, 39, 85);
-
 }
 
-
+/*Transactions card */
 .gif {
   width: 12rem;
   height: auto;
 }
 
-.tx-bg {
-  background-color: blueviolet;
-}
-
+/*Connect button */
 .wallet-btn {
   border-radius: 15px;
 }
 
+/*logo */
 .logo-txt {
   font-family: 'Alfa Slab One', cursive;
 }

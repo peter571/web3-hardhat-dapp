@@ -17,6 +17,7 @@ const useFetch = ({ gif }) => {
 
   useEffect(() => {
     if (gif) fetchGifs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gif]);
 
   return gifUrl;
