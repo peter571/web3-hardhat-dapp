@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 const API_KEY = process.env.REACT_APP_GIF_API;
 
+
 const useFetch = ({ gif }) => {
   const [gifUrl, setGifUrl] = useState("");
 
@@ -11,7 +12,7 @@ const useFetch = ({ gif }) => {
 
       setGifUrl(data[0]?.images?.downsized_medium.url);
     } catch (error) {
-      setGifUrl("https://metro.co.uk/wp-content/uploads/2015/05/hello.gif?quality=90&strip=all&zoom=1&resize=500%2C284");
+      console.log(error)
     }
   };
 

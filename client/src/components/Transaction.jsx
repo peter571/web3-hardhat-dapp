@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import { shortenAddress } from "../utils/utils";
 import useFetch from '../hooks/useFetch'
+import defaultImg from '../images/tx.jpg'
 
 const Transaction = ({ addressTo, addressFrom, timestamp, message, gif, amount }) => {
   const gifUrl = useFetch({ gif })
@@ -29,7 +30,7 @@ const Transaction = ({ addressTo, addressFrom, timestamp, message, gif, amount }
         <Card.Text>{amount}{" "}<strong>Eth</strong></Card.Text>
         <Card.Text>{message}</Card.Text>
       </Card.Body>
-      <Card.Img variant="top" src={gifUrl} />
+      <Card.Img variant="top" src={gifUrl || defaultImg} />
       <Card.Text className="text-center m-2">{timestamp}</Card.Text>
     </Card>
   );

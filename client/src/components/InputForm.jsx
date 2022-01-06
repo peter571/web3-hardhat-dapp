@@ -7,15 +7,15 @@ const InputForm = () => {
   const { handleChange, sendTransaction, formData, isLoading, setFormData } =
     useContext(TransactionContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     const { addressTo, amount, gif, message } = formData;
 
     e.preventDefault();
 
     if (!addressTo || !amount || !gif || !message) return alert('Fill all inputs!');
 
-    sendTransaction();
-    setFormData({ addressTo: "", amount: "", gif: "", message: "" });
+    await sendTransaction();
+    setFormData({ ...formData, addressTo: "", amount: "", gif: "", message: "" });
   };
 
   return (
