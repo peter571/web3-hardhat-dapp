@@ -4,7 +4,8 @@ import defaultImg from '../images/tx.jpg';
 import { TransactionProp } from '../types'
 
 const Transaction = (prop: TransactionProp) => {
-  const gifUrl = useFetch(prop.gif)
+  const gifUrl = useFetch(prop.gif);
+
   return (
     <div className="flex flex-col gap-2 sm:flex-row justify-between md:w-[70%] p-2">
       <div className="flex gap-2">

@@ -4,7 +4,7 @@ import { TransactionContext } from "../context/TransactionContext";
 
 const Transactions = () => {
   const values = useContext(TransactionContext);
-  console.log(values?.transactions)
+
   return (
     <div>
       <h3 className="text-white text-center my-2">Latest Transactions</h3>
