@@ -2,8 +2,9 @@
 
 ## K-Crypt
 
-> This is a real world web app that allows you to send crpto to any address using a Metamask Wallet.
+> This is a web3.0 app that allows you to send crpto to any address using a Metamask Wallet.
 > All transactions are stored and retrieved from the blockchain with the help of a smart contract.
+> Each transaction has a message and gif that displays on the website just to make you remember the transaction.
 
 ![K-Crypt](https://github.com/peter571/web3-hardhat-dapp/blob/master/client/src/images/crypt.jpg)
 
