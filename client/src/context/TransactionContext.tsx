@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import abi from '../contracts/Transactions.json';
+import { GlobalContent, TransactionProp } from "../types";
 
 const contractAddress = "0x7bc3e664B22502470DcE5Dba0c4c23c190Cdd97D";
 const contractABI = abi.abi;
 
-export const TransactionContext = React.createContext();
+export const TransactionContext = React.createContext<GlobalContent | null>(null);
 
 const { ethereum } = window;
 
@@ -18,17 +19,14 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-export const TransactionsProvider = ({ children }) => {
+export const TransactionsProvider = ({ children }: TransactionProp) => {
   const [formData, setformData] = useState({ addressTo: "", amount: "", gif: "", message: "" });
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount"));
   const [transactions, setTransactions] = useState([]);
-  const [accBalance, setBalance] = useState(null)
+  const [accBalance, setBalance] = useState('')
 
-  const handleChange = (e) => {
-    setformData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const addressBalance = async () => {
     try {
@@ -46,15 +44,17 @@ export const TransactionsProvider = ({ children }) => {
         const transactionsContract = createEthereumContract();
         const availableTransactions = await transactionsContract.getAllTransactions();
 
-        const structuredTransactions = availableTransactions.map((transaction) => ({
-          addressTo: transaction.receiver,
-          addressFrom: transaction.sender,
-          timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
-          message: transaction.message,
-          gif: transaction.gif,
-          amount: parseInt(transaction.amount._hex) / (10 ** 18)
-        }));
-        setTransactions(structuredTransactions);
+        const structuredTransactions = availableTransactions.map(function (transaction: { receiver: any; sender: any; timestamp: { toNumber: () => number; }; message: any; gif: any; amount: { _hex: string; }; }) {
+          return ({
+            addressTo: transaction.receiver,
+            addressFrom: transaction.sender,
+            timestamp: new Date(transaction.timestamp.toNumber() * 1000).toLocaleString(),
+            message: transaction.message,
+            gif: transaction.gif,
+            amount: parseInt(transaction.amount._hex) / (10 ** 18)
+          });
+        });
+        setTransactions(structuredTransactions?.reverse());
       } else {
         console.log("Ethereum is not present");
       }
@@ -101,7 +101,6 @@ export const TransactionsProvider = ({ children }) => {
       setCurrentAccount(accounts[0]);
     } catch (error) {
       console.log(error);
-
     }
   };
 
@@ -159,7 +158,6 @@ export const TransactionsProvider = ({ children }) => {
         currentAccount,
         isLoading,
         sendTransaction,
-        handleChange,
         formData,
         setformData,
         accBalance
